@@ -712,17 +712,17 @@ class Executer {
 <br><br>If you want to paste into your replies something other than text, you should use bbcodes.
 <br>The following BBCodes are available:
 
-<br><br>[spoiler]hidden text[/spoiler]
+<br><br>[spoiler]hidden text[/spoiler] or %%hidden text%%
 <br>[quote]quoted text[/quote]
-<br>[youtube]video file url[/youtube]
+<br>[youtube]video url[/youtube]
 <br>[br]Text on next line
 <!-- <br>[sound]sound file url[/sound] -->
-<!-- <br>[b]bolded[/b] -->
+<br>[b]bolded[/b] of **bolded**
 <!-- <br>[center]centered text[/center] -->
 <br>[img]image url[/img]
 <br>[url(=URL)]URL or text[/url]
 <!-- <br>[hr]Horizontal line -->
-<br>[i]italic[/i]
+<br>[i]italic[/i] of *italic*
 <br>[s]strikethrough[/s]
 <br>[u]underlined[/u]
 <!-- <br>[audio]audio file url[/audio] -->
@@ -762,13 +762,26 @@ class Executer {
         /* Bold text */
         $match["b"] = "/\[b\](.*?)\[\/b\]/is";
         $replace["b"] = "<b>$1</b>";
-        
+ 
+        /* Bold text Wakaba */
+        $match["wb"] = "`\*\*(.+?)\*\*`is";
+        $replace["wb"] = "<b>$1</b>";
+ 
+        /* Spoiler */
         $match["spoiler"] = "/\[spoiler\](.*?)\[\/spoiler\]/is";
         $replace["spoiler"] = "<span class=\"spoiler\">$1</span>";
-
+ 
+        /* Spoiler Wakaba */
+        $match["wspoiler"] = "`\%\%(.+?)\%\%`is";
+        $replace["wspoiler"] = "<span class=\"spoiler\">$1</span>";
+ 
         /* Italics */
         $match["i"] = "/\[i\](.*?)\[\/i\]/is";
         $replace["i"] = "<i>$1</i>";
+ 
+        /* Italics Wakaba */
+        $match["wi"] = "`\*(.+?)\*`is";
+        $replace["wi"] = "<i>$1</i>";
 
         /* Underline */
         $match["u"] = "/\[u\](.*?)\[\/u\]/is";
